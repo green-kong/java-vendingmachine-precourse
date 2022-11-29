@@ -1,6 +1,7 @@
 package vendingmachine.domain;
 
 import vendingmachine.Coin;
+import vendingmachine.utils.Validator;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -17,6 +18,7 @@ public class Changes {
     }
 
     public void createRandomCoin(int money) {
+        validate(money);
         while (money > 0) {
             int randomAmount = Coin.getRandomAmount();
             if (money - randomAmount >= 0) {
@@ -33,5 +35,9 @@ public class Changes {
         Arrays.stream(Coin.values())
                 .forEach(coin -> holdingCoinResult.add(String.format(resultLayout, coin.getAmountName(), changeMap.get(coin))));
         return holdingCoinResult;
+    }
+
+    private void validate(int money) {
+        Validator.isAcceptableAmount(money);
     }
 }
