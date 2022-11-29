@@ -18,6 +18,11 @@ public class Products {
         }
     }
 
+    public void sell(String productName) {
+        Product product = getProductByName(productName);
+        product.sell();
+    }
+
     private Product getProductByName(String productName) {
             return products.stream()
                     .filter(productInfo -> productInfo.getName().equals(productName))
