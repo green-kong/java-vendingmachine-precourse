@@ -32,6 +32,10 @@ public class Product {
         count -= 1;
     }
 
+    public boolean isRemain() {
+        return count > 0;
+    }
+
     private void validate(int price) {
         Validator.isAcceptableAmount(price);
     }

@@ -31,6 +31,13 @@ public class Products {
         return purchasableProducts.size() > 0;
     }
 
+    public boolean checkStockToSell() {
+        List<Product> remainedProducts = products.stream()
+                .filter(Product::isRemain)
+                .collect(Collectors.toList());
+        return remainedProducts.size() > 0;
+    }
+
     private Product getProductByName(String productName) {
         return products.stream()
                 .filter(productInfo -> productInfo.getName().equals(productName))
