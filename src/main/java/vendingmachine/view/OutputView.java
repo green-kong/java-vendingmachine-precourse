@@ -13,4 +13,8 @@ public class OutputView {
         System.out.println("\n자판기가 보유한 동전");
         holdingCoins.forEach(System.out::println);
     }
+
+    public void printDeposit(String depositResult) {
+        System.out.println(depositResult);
+    }
 }

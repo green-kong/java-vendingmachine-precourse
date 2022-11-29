@@ -25,7 +25,7 @@ public class Controller {
 
     private void purchaseProduct() {
         depositMoney();
-//        selectProduct();
+        selectProduct();
     }
 
     private void getChanges() {
@@ -65,5 +65,14 @@ public class Controller {
             outputView.printErrorMessage(exception.getMessage());
             depositMoney();
         }
+    }
+
+    private void selectProduct() {
+        printDeposit();
+    }
+
+    private void printDeposit() {
+        String deposit = service.getDeposit();
+        outputView.printDeposit(deposit);
     }
 }

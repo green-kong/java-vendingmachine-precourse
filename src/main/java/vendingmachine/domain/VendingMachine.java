@@ -20,4 +20,8 @@ public class VendingMachine {
     public void validateDepositAmount(int depositAmount) {
         Validator.isAcceptableAmount(depositAmount);
     }
+
+    public String getDeposit() {
+        return String.format("\n투입금액: %d원", this.deposit);
+    }
 }
