@@ -25,4 +25,11 @@ public enum Coin {
 
         return Randoms.pickNumberInList(amounts);
     }
+
+    public static Coin getCoinByAmount(int amount) {
+        return Arrays.stream(Coin.values())
+                .filter(coin -> coin.amount == amount)
+                .findFirst()
+                .orElse(null);
+    }
 }
