@@ -4,6 +4,8 @@ import vendingmachine.service.Service;
 import vendingmachine.view.InputView;
 import vendingmachine.view.OutputView;
 
+import java.util.List;
+
 public class Controller {
     private final Service service = new Service();
     private final InputView inputView = new InputView();
@@ -17,6 +19,7 @@ public class Controller {
 
     private void setVendingMachine() {
         setHoldingMoney();
+        printHoldingCoin();
     }
 
     private void purchaseProduct() {
@@ -35,5 +38,10 @@ public class Controller {
             outputView.printErrorMessage(exception.getMessage());
             setHoldingMoney();
         }
+    }
+
+    private void printHoldingCoin() {
+        List<String> holdingCoinResult = service.getHoldingCoinResult();
+        outputView.printHoldingCoin(holdingCoinResult);
     }
 }
