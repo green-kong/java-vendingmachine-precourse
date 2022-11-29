@@ -4,6 +4,7 @@ import vendingmachine.Coin;
 import vendingmachine.domain.Changes;
 import vendingmachine.domain.Product;
 import vendingmachine.domain.Products;
+import vendingmachine.domain.VendingMachine;
 import vendingmachine.utils.Converter;
 import vendingmachine.utils.Validator;
 
@@ -13,7 +14,7 @@ import java.util.stream.Collectors;
 
 public class Service {
     Changes changes = new Changes(new EnumMap<>(Coin.class));
-    Products products;
+    VendingMachine vendingMachine;
 
     public void createHoldingCoin(String holdingMoneyInput) {
         int holdingMoney = Converter.toIntFromString(holdingMoneyInput);
@@ -28,10 +29,11 @@ public class Service {
         List<String> productInputs = Converter.parseProductInput(productInput);
         validateProductInputs(productInputs);
         List<List<String>> productDescriptions = Converter.parseProductDescriptions(productInputs);
-        List<Product> products = productDescriptions.stream().
+        List<Product> productList = productDescriptions.stream().
                 map(Product::new)
                 .collect(Collectors.toList());
-        this.products = new Products(products);
+        Products products = new Products(productList);
+        vendingMachine = new VendingMachine(this.changes, products);
     }
 
     private void validateProductInputs(List<String> productInputs) {
