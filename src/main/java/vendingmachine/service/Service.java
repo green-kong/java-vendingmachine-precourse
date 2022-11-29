@@ -36,6 +36,11 @@ public class Service {
         vendingMachine = new VendingMachine(this.changes, products);
     }
 
+    public void depositMoney(String depositInput) {
+        int depositAmount = Converter.toIntFromString(depositInput);
+        vendingMachine.depositMoney(depositAmount);
+    }
+
     private void validateProductInputs(List<String> productInputs) {
         productInputs.forEach(input -> {
             Validator.checkProductInputFormat(input);

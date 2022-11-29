@@ -24,7 +24,8 @@ public class Controller {
     }
 
     private void purchaseProduct() {
-
+        depositMoney();
+//        selectProduct();
     }
 
     private void getChanges() {
@@ -53,6 +54,16 @@ public class Controller {
         } catch (IllegalArgumentException exception) {
             outputView.printErrorMessage(exception.getMessage());
             setProducts();
+        }
+    }
+
+    private void depositMoney() {
+        try {
+            String depositInput = inputView.getDepositInput();
+            service.depositMoney(depositInput);
+        } catch (IllegalArgumentException exception) {
+            outputView.printErrorMessage(exception.getMessage());
+            depositMoney();
         }
     }
 }
