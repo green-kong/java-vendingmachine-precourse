@@ -45,6 +45,10 @@ public class Service {
         return vendingMachine.getDeposit();
     }
 
+    public void purchaseProduct(String productName) {
+        vendingMachine.purchase(productName);
+    }
+
     private void validateProductInputs(List<String> productInputs) {
         productInputs.forEach(input -> {
             Validator.checkProductInputFormat(input);

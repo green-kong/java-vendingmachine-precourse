@@ -26,6 +26,7 @@ public class Controller {
     private void purchaseProduct() {
         depositMoney();
         selectProduct();
+//        checkDeposit();
     }
 
     private void getChanges() {
@@ -68,7 +69,14 @@ public class Controller {
     }
 
     private void selectProduct() {
-        printDeposit();
+        try {
+            printDeposit();
+            String productNameInput = inputView.getProductNameInput();
+            service.purchaseProduct(productNameInput);
+        } catch (IllegalArgumentException exception) {
+            outputView.printErrorMessage(exception.getMessage());
+            selectProduct();
+        }
     }
 
     private void printDeposit() {
