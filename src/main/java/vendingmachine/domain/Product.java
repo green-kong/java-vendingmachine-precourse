@@ -20,6 +20,14 @@ public class Product {
         this.count = count;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
     private void validate(int price) {
         Validator.isAcceptableAmount(price);
     }
