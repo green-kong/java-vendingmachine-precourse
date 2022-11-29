@@ -8,7 +8,7 @@ import java.util.List;
 public class Product {
     private final String name;
     private final int price;
-    private final int count;
+    private int count;
 
     public Product(List<String> productDescription) {
         String name = productDescription.get(0);
@@ -26,6 +26,10 @@ public class Product {
 
     public int getPrice() {
         return price;
+    }
+
+    public void sell() {
+        count -= 1;
     }
 
     private void validate(int price) {
