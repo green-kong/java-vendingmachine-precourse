@@ -2,8 +2,10 @@ package vendingmachine.domain;
 
 import vendingmachine.Coin;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.EnumMap;
+import java.util.List;
 
 public class Changes {
     EnumMap<Coin, Integer> changeMap;
@@ -23,5 +25,13 @@ public class Changes {
                 changeMap.put(coin, changeMap.get(coin) + 1);
             }
         }
+    }
+
+    public List<String> getHoldingCoin() {
+        List<String> holdingCoinResult = new ArrayList<>();
+        String resultLayout = "%s - %d개";
+        Arrays.stream(Coin.values())
+                .forEach(coin -> holdingCoinResult.add(String.format(resultLayout, coin.getAmountName(), changeMap.get(coin))));
+        return holdingCoinResult;
     }
 }
