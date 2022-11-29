@@ -1,5 +1,7 @@
 package vendingmachine.domain;
 
+import vendingmachine.utils.Validator;
+
 public class VendingMachine {
     private final Changes changes;
     private final Products products;
@@ -8,5 +10,14 @@ public class VendingMachine {
     public VendingMachine(Changes changes, Products products) {
         this.changes = changes;
         this.products = products;
+    }
+
+    public void depositMoney(int depositAmount) {
+        validateDepositAmount(depositAmount);
+        this.deposit = depositAmount;
+    }
+
+    public void validateDepositAmount(int depositAmount) {
+        Validator.isAcceptableAmount(depositAmount);
     }
 }
