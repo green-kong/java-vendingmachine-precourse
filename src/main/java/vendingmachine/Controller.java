@@ -1,21 +1,28 @@
 package vendingmachine;
 
+import vendingmachine.view.InputView;
+
 public class Controller {
+    private final InputView inputView = new InputView();
     public void run() {
         setVendingMachine();
         purchaseProduct();
         getChanges();
     }
 
-    public void setVendingMachine() {
+    private void setVendingMachine() {
 
     }
 
-    public void purchaseProduct() {
+    private void purchaseProduct() {
 
     }
 
-    public void getChanges() {
+    private void getChanges() {
 
+    }
+
+    private void setHoldingMoney() {
+        String holdingMoneyInput = inputView.getHoldingMoneyInput();
     }
 }
