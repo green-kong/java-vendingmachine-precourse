@@ -32,4 +32,8 @@ public enum Coin {
                 .findFirst()
                 .orElse(null);
     }
+
+    public String getAmountName() {
+        return String.format("%d원", this.amount);
+    }
 }
