@@ -17,11 +17,24 @@ public class VendingMachine {
         this.deposit = depositAmount;
     }
 
-    public void validateDepositAmount(int depositAmount) {
+    public String getDeposit() {
+        return String.format("\n투입금액: %d원", this.deposit);
+    }
+
+    public void purchase(String productName) {
+        int productPrice = products.getProductPrice(productName);
+        checkDeposit(productPrice);
+        products.sell(productName);
+        deposit -= productPrice;
+    }
+
+    private void validateDepositAmount(int depositAmount) {
         Validator.isAcceptableAmount(depositAmount);
     }
 
-    public String getDeposit() {
-        return String.format("\n투입금액: %d원", this.deposit);
+    private void checkDeposit(int productPrice) {
+        if (productPrice > deposit) {
+            throw new IllegalArgumentException("투입금액이 모자랍니다.");
+        }
     }
 }
