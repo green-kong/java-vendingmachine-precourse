@@ -28,6 +28,10 @@ public class VendingMachine {
         deposit -= productPrice;
     }
 
+    public boolean checkAffordability() {
+        return products.checkAffordability(deposit);
+    }
+
     private void validateDepositAmount(int depositAmount) {
         Validator.isAcceptableAmount(depositAmount);
     }

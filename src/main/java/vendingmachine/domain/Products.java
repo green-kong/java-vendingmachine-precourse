@@ -1,6 +1,7 @@
 package vendingmachine.domain;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Products {
     List<Product> products;
@@ -23,10 +24,17 @@ public class Products {
         product.sell();
     }
 
+    public boolean checkAffordability(int deposit) {
+        List<Product> purchasableProducts = products.stream()
+                .filter(product -> product.getPrice() <= deposit)
+                .collect(Collectors.toList());
+        return purchasableProducts.size() > 0;
+    }
+
     private Product getProductByName(String productName) {
-            return products.stream()
-                    .filter(productInfo -> productInfo.getName().equals(productName))
-                    .findFirst()
-                    .orElse(null);
+        return products.stream()
+                .filter(productInfo -> productInfo.getName().equals(productName))
+                .findFirst()
+                .orElse(null);
     }
 }

@@ -49,6 +49,10 @@ public class Service {
         vendingMachine.purchase(productName);
     }
 
+    public boolean checkAffordability() {
+       return vendingMachine.checkAffordability();
+    }
+
     private void validateProductInputs(List<String> productInputs) {
         productInputs.forEach(input -> {
             Validator.checkProductInputFormat(input);
