@@ -20,6 +20,7 @@ public class Controller {
     private void setVendingMachine() {
         setHoldingMoney();
         printHoldingCoin();
+        setProducts();
     }
 
     private void purchaseProduct() {
@@ -43,5 +44,15 @@ public class Controller {
     private void printHoldingCoin() {
         List<String> holdingCoinResult = service.getHoldingCoinResult();
         outputView.printHoldingCoin(holdingCoinResult);
+    }
+
+    private void setProducts() {
+        try {
+            String productsInput = inputView.getProductsInput();
+            service.createProducts(productsInput);
+        } catch (IllegalArgumentException exception) {
+            outputView.printErrorMessage(exception.getMessage());
+            setProducts();
+        }
     }
 }
