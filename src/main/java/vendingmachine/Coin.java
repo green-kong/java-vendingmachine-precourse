@@ -36,4 +36,8 @@ public enum Coin {
     public String getAmountName() {
         return String.format("%d원", this.amount);
     }
+
+    public int getSum(int count) {
+        return this.amount * count;
+    }
 }
