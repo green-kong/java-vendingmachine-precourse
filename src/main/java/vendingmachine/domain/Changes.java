@@ -52,6 +52,13 @@ public class Changes {
         return generateChangeResults(existedCoins,deposit);
     }
 
+    public List<String> getAllCoinResult() {
+        List<Coin> existedCoins = getExistedCoin();
+        return existedCoins.stream()
+                .map(coin -> String.format(("%s - %d개"), coin.getAmountName(), changeMap.get(coin)))
+                .collect(Collectors.toList());
+    }
+
     private void validate(int money) {
         Validator.isAcceptableAmount(money);
     }
@@ -61,7 +68,7 @@ public class Changes {
                 .filter(coin -> changeMap.get(coin) > 0)
                 .collect(Collectors.toList());
     }
-    
+
     private List<String> generateChangeResults(List<Coin> existedCoins, int deposit) {
         List<String> changeResults = new ArrayList<>();
         for (Coin coin : existedCoins) {

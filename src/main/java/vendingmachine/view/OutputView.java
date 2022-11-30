@@ -17,4 +17,9 @@ public class OutputView {
     public void printDeposit(String depositResult) {
         System.out.println(depositResult);
     }
+
+    public void printChangeResult(List<String> changeResults){
+        System.out.println("잔돈");
+        changeResults.forEach(System.out::println);
+    }
 }

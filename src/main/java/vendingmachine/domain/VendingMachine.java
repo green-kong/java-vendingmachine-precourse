@@ -21,7 +21,7 @@ public class VendingMachine {
     }
 
     public String getDeposit() {
-        return String.format("\n투입금액: %d원", this.deposit);
+        return String.format("\n투입 금액: %d원", this.deposit);
     }
 
     public void purchase(String productName) {
@@ -41,9 +41,9 @@ public class VendingMachine {
 
     public List<String> refundChange() {
         int totalMoney = changes.getTotal();
-//        if (totalMoney < deposit) {
-////            return refundAllCoinsResult();
-//        }
+        if (totalMoney < deposit) {
+            return refundAllCoinsResult();
+        }
         return changeResult();
     }
 
@@ -59,5 +59,9 @@ public class VendingMachine {
 
     private List<String> changeResult() {
        return changes.getChangeResult(deposit);
+    }
+
+    private List<String> refundAllCoinsResult() {
+        return changes.getAllCoinResult();
     }
 }

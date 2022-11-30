@@ -30,9 +30,8 @@ public class Controller {
 
     private void getChanges() {
         List<String> changeResults = service.getChangeResult();
-        for (String changeResult : changeResults){
-            System.out.println(changeResult);
-        }
+        printDeposit();
+        outputView.printChangeResult(changeResults);
     }
 
     private void setHoldingMoney() {
