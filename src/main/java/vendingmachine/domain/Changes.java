@@ -3,10 +3,8 @@ package vendingmachine.domain;
 import vendingmachine.Coin;
 import vendingmachine.utils.Validator;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.EnumMap;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class Changes {
     EnumMap<Coin, Integer> changeMap;
@@ -35,6 +33,18 @@ public class Changes {
         Arrays.stream(Coin.values())
                 .forEach(coin -> holdingCoinResult.add(String.format(resultLayout, coin.getAmountName(), changeMap.get(coin))));
         return holdingCoinResult;
+    }
+
+    public Integer getTotal() {
+        int total = 0;
+        List<Integer> sumList = Arrays.stream(Coin.values())
+                .map(coin -> coin.getSum(changeMap.get(coin)))
+                .collect(Collectors.toList());
+        for (Integer sum : sumList) {
+            total += sum;
+        }
+
+        return total;
     }
 
     private void validate(int money) {
