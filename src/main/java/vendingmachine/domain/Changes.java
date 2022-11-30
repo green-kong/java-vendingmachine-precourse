@@ -47,7 +47,33 @@ public class Changes {
         return total;
     }
 
+    public List<String> getChangeResult(int deposit) {
+        List<Coin> existedCoins = getExistedCoin();
+        return generateChangeResults(existedCoins,deposit);
+    }
+
     private void validate(int money) {
         Validator.isAcceptableAmount(money);
+    }
+
+    private List<Coin> getExistedCoin() {
+        return Arrays.stream(Coin.values())
+                .filter(coin -> changeMap.get(coin) > 0)
+                .collect(Collectors.toList());
+    }
+    
+    private List<String> generateChangeResults(List<Coin> existedCoins, int deposit) {
+        List<String> changeResults = new ArrayList<>();
+        for (Coin coin : existedCoins) {
+            if (deposit <= 0) {
+                return changeResults;
+            }
+            int changeCount = coin.getChangeCoinCount(deposit, changeMap.get(coin));
+            if (changeCount != 0) {
+                changeResults.add(String.format(("%s - %d개"), coin.getAmountName(), changeCount));
+                deposit -= coin.getSum(changeCount);
+            }
+        }
+        return changeResults;
     }
 }
