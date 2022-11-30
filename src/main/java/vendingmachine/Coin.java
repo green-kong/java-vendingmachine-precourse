@@ -19,7 +19,7 @@ public enum Coin {
     }
 
     public static int getRandomAmount() {
-        List<Integer> amounts =  Arrays.stream(Coin.values())
+        List<Integer> amounts = Arrays.stream(Coin.values())
                 .map(coin -> coin.amount)
                 .collect(Collectors.toList());
 
@@ -35,6 +35,19 @@ public enum Coin {
 
     public String getAmountName() {
         return String.format("%d원", this.amount);
+    }
+
+    public int getChangeCoinCount(int deposit, int quantity) {
+        if (deposit < this.amount) {
+            return 0;
+        }
+        for (int i = 1; i <= quantity; i++) {
+            deposit -= this.amount;
+            if (deposit < 0) {
+                return i - 1;
+            }
+        }
+        return quantity;
     }
 
     public int getSum(int count) {
