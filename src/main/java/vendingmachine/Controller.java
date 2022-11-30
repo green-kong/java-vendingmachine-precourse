@@ -29,7 +29,10 @@ public class Controller {
     }
 
     private void getChanges() {
-        
+        List<String> changeResults = service.getChangeResult();
+        for (String changeResult : changeResults){
+            System.out.println(changeResult);
+        }
     }
 
     private void setHoldingMoney() {

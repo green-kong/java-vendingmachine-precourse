@@ -57,6 +57,10 @@ public class Service {
         return vendingMachine.checkStock();
     }
 
+    public List<String> getChangeResult() {
+        return vendingMachine.refundChange();
+    }
+
     private void validateProductInputs(List<String> productInputs) {
         productInputs.forEach(input -> {
             Validator.checkProductInputFormat(input);

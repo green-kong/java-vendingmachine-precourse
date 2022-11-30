@@ -2,6 +2,9 @@ package vendingmachine.domain;
 
 import vendingmachine.utils.Validator;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class VendingMachine {
     private final Changes changes;
     private final Products products;
@@ -36,6 +39,14 @@ public class VendingMachine {
         return products.checkStockToSell();
     }
 
+    public List<String> refundChange() {
+        int totalMoney = changes.getTotal();
+//        if (totalMoney < deposit) {
+////            return refundAllCoinsResult();
+//        }
+        return changeResult();
+    }
+
     private void validateDepositAmount(int depositAmount) {
         Validator.isAcceptableAmount(depositAmount);
     }
@@ -44,5 +55,9 @@ public class VendingMachine {
         if (productPrice > deposit) {
             throw new IllegalArgumentException("투입금액이 모자랍니다.");
         }
+    }
+
+    private List<String> changeResult() {
+       return changes.getChangeResult(deposit);
     }
 }
